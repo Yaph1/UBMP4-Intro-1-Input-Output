@@ -21,7 +21,26 @@
 // TODO Set linker code offset to '800' under "Additional options" pull-down.
 
 // The main function is required, and the program begins executing from here.
-
+void makeLEDPattern()  {          
+            LED3 = 1;
+            __delay_ms(250);
+            LED4 = 1;
+            __delay_ms(250);
+            LED5 = 1;
+            __delay_ms(250);
+            LED6 = 1;
+            __delay_ms(250);
+            LED3 = 0;
+            __delay_ms(250);
+            LED4 = 0;
+            __delay_ms(250);
+            LED5 = 0;
+            __delay_ms(250);
+            LED6 = 0;
+            __delay_ms(100);
+    
+    
+}
 int main(void)
 {
     // Configure oscillator and I/O ports. These functions run once at start-up.
@@ -34,35 +53,32 @@ int main(void)
         // If SW2 is pressed, make a flashy light pattern
         if(SW2 == 0)
         {
-            LED3 = 1;
-            __delay_ms(1000);
-            LED4 = 1;
-            __delay_ms(100);
-            LED5 = 1;
-            __delay_ms(100);
-            LED6 = 1;
-            __delay_ms(100);
-            LED3 = 0;
-            __delay_ms(100);
-            LED4 = 0;
-            __delay_ms(100);
-            LED5 = 0;
-            __delay_ms(100);
-            LED6 = 0;
-            __delay_ms(100);
+           makeLEDPattern();
         }
         
+         if(SW5 == 0)
+        {
+            makeLEDPattern();
+        }
         // Add code for your Program Analysis and Programming Activities here:
-        if(SW3 == 0)
+          if(SW3 == 0)
+        {
+            LATC = 0b00000000;
+            __delay_ms(100);
+            LATC = 0b11110000;
+            __delay_ms(100);
+        }
+
+        if(SW4 == 0)
         {
             LED4 = 1;
             LED5 = 1;
-            __delay_ms(50);
+            __delay_ms(200);
             LED4 = 0;
             LED5 = 0;
             LED3 = 1;
             LED6 = 1;
-            __delay_ms(50);
+            __delay_ms(200);
             LED3 = 0;
             LED6 = 0;
         
@@ -81,12 +97,15 @@ int main(void)
  * 1. How many times do the LEDs flash if SW2 is quickly pressed and released?
  *    Do the LEDs keep flashing when SW2 is held? Look at the program and
  *    explain why this happens when SW2 is held.
+ The LED's only flash if SW2 is pressed, and will flash for as long as it is held.
  * 
  * 2. Explain the difference between the statements: LED3 = 0; and LED3 = 1;
+ LED3 = 0 outputs 0V to the LED. LED3 = 2 outpits 5V to the LED.
  * 
  * 3. What voltage do you expect the microcontroller to output to LED D3 when
  *    the statement LED3 = 0; runs? What voltage do you expect the output to be
  *    when the statement LED3 = 1; runs?
+ The expected voltage output to LED3 when the statement LED3 = 0 is 0V. For LED3 = 1 it is 5V.
  * 
  *    You can confirm the output voltage with a voltmeter if you have access
  *    to one. If you tried that, did the voltage match your prediction?
@@ -94,6 +113,7 @@ int main(void)
  * 4. The statement 'if(SW2 == 0)' uses two equal signs, while the statement
  *    'LED3 = 1;' uses a single equal sign. What operation is performed by one
  *    equal sign? What operation is performed by two equal signs?
+ An assignment operation is performed by one equal sign, and a conditional operation is performed by two equal signs.
  * 
  * 5. The following program code includes instructions that write to the PORTC
  *    output latches directly. Try it by copying and pasting this code below
@@ -110,6 +130,7 @@ int main(void)
  *    What happens when pushbutton SW3 is pressed? Identify at least one
  *    advantage and one disadvantage of controlling the LEDs using 'LATC' writes
  *    rather than through individual 'LEDn = x;' statements.
+ All lights turn on and stay on when SW3 is pressed. An Advantage 
  * 
  * 6. Next, compare the operation of 'if' and 'while' structures to simulate
  *    momentary buttons. Replace the code you added in 5, above, with this code:
