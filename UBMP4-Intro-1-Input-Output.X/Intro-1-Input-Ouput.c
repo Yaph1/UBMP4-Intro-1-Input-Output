@@ -37,7 +37,7 @@ void makeLEDPattern()  {
             LED5 = 0;
             __delay_ms(250);
             LED6 = 0;
-            __delay_ms(100);
+            __delay_ms(250);
     
     
 }
@@ -56,20 +56,28 @@ int main(void)
            makeLEDPattern();
         }
         
-         if(SW5 == 0)
-        {
-            makeLEDPattern();
-        }
+       
         // Add code for your Program Analysis and Programming Activities here:
-          if(SW3 == 0)
+         // Momentary button using if structure
+        if(SW3 == 0)
         {
-            LATC = 0b00000000;
-            __delay_ms(100);
-            LATC = 0b11110000;
-            __delay_ms(100);
+            LED4 = 1;
+        }
+        else
+        {
+            LED4 = 0;
         }
 
-        if(SW4 == 0)
+        // Momentary button using while structure
+        while(SW4 == 0)
+        {
+            LED5 = 1;
+        }
+        LED5 = 0;
+      
+        
+
+        if(SW5 == 0)
         {
             LED4 = 1;
             LED5 = 1;
