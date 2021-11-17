@@ -59,21 +59,22 @@ int main(void)
        
         // Add code for your Program Analysis and Programming Activities here:
          // Momentary button using if structure
+        // Nested if 'AND' code
         if(SW3 == 0)
         {
-            LED4 = 1;
+            if(SW4 == 0)
+            {
+                LED4 = 1;
+            }
+            else
+            {
+                LED4 = 0;
+            }
         }
         else
         {
             LED4 = 0;
         }
-
-        // Momentary button using while structure
-        while(SW4 == 0)
-        {
-            LED5 = 1;
-        }
-        LED5 = 0;
       
         
 
@@ -138,8 +139,8 @@ int main(void)
  *    What happens when pushbutton SW3 is pressed? Identify at least one
  *    advantage and one disadvantage of controlling the LEDs using 'LATC' writes
  *    rather than through individual 'LEDn = x;' statements.
- All lights turn on and stay on when SW3 is pressed. An Advantage 
- * 
+ All lights turn on and stay on when SW3 is pressed. An Advantage is that you can control all LED's using much less code which runs faster, saves space, and saves your time
+ * But a disadvantage is that it can be confusing, not knowing which bit controls which light.
  * 6. Next, compare the operation of 'if' and 'while' structures to simulate
  *    momentary buttons. Replace the code you added in 5, above, with this code:
 
@@ -165,10 +166,14 @@ int main(void)
  *    Next, press and hold SW3 while pressing and releasing SW4. Does it work
  *    as expected?
  * 
+ Yes, it works as expected. LED5 turns off when you let go of SW4
+
  *    Next, try press and holding SW4 while pressing and releasing SW3. Does it
  *    work as expected? Explain the difference in operation between the 'if' and
  *    'while' structures making up the momentary button code.
  * 
+ LED4 doesn't turn on while SW4 is being held. When SW4 is still on, it keeps the while statement true so it keeps looping, but for the if statement, SW3 only checked once, then turned on or off
+
  * 7. Let's explore logical conditions using 'if' statements. Replace the code
  *    added in 6, above, with this nested if code to make a logical AND
  *    condition that will light LED D4 only if both SW3 and SW4 are pressed:
