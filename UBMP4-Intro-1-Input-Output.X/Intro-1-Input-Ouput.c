@@ -58,36 +58,25 @@ int main(void)
         
        
         // Add code for your Program Analysis and Programming Activities here:
-         // Momentary button using if structure
-        // Nested if 'AND' code
-        if(SW3 == 0)
+
+       // Make a tone while SW5 is held
+        if(SW5 == 0)
         {
-            if(SW4 == 0)
-            {
-                LED4 = 1;
-            }
-            else
-            {
-                LED4 = 0;
-            }
+            BEEPER = !BEEPER;
+            __delay_us(567);
         }
-        else
-        {
-            LED4 = 0;
-        }
-      
         
 
-        if(SW5 == 0)
+        if(SW4 == 0)
         {
             LED4 = 1;
             LED5 = 1;
-            __delay_ms(200);
+            __delay_ms(500);
             LED4 = 0;
             LED5 = 0;
             LED3 = 1;
             LED6 = 1;
-            __delay_ms(200);
+            __delay_ms(500);
             LED3 = 0;
             LED6 = 0;
         
@@ -106,10 +95,12 @@ int main(void)
  * 1. How many times do the LEDs flash if SW2 is quickly pressed and released?
  *    Do the LEDs keep flashing when SW2 is held? Look at the program and
  *    explain why this happens when SW2 is held.
- The LED's only flash once if SW2 is pressed, but will flash for as long as it is held.
+
+ The LED's only flash once if SW2 is pressed, but will flash for as long as it is held. I think it keeps flashing if SW2 is held because whne you hold it down it keeps the if statement true.
  * 
  * 2. Explain the difference between the statements: LED3 = 0; and LED3 = 1; 
- LED3 = 0 outputs 0V to the LED. LED3 = 1 outpits 5V to the LED.
+
+ LED3 = 0 outputs 0V to the LED and turns it off. LED3 = 1 outputs 5V to the LED and turns it on.
  * 
  * 3. What voltage do you expect the microcontroller to output to LED D3 when
  *    the statement LED3 = 0; runs? What voltage do you expect the output to be
@@ -122,6 +113,7 @@ int main(void)
  * 4. The statement 'if(SW2 == 0)' uses two equal signs, while the statementnj      
  *    'LED3 = 1;' uses a single equal sign. What operation is performed by one
  *    equal sign? What operation is performed by two equal signs?
+
  An assignment operation is performed by one equal sign, and a conditional operation is performed by two equal signs.
  * 
  * 5. The following program code includes instructions that write to the PORTC
@@ -139,8 +131,10 @@ int main(void)
  *    What happens when pushbutton SW3 is pressed? Identify at least one
  *    advantage and one disadvantage of controlling the LEDs using 'LATC' writes
  *    rather than through individual 'LEDn = x;' statements.
+
  All lights turn on and stay on when SW3 is pressed. An Advantage is that you can control all LED's using much less code which runs faster, saves space, and saves your time
- * But a disadvantage is that it can be confusing, not knowing which bit controls which light.
+ * But a disadvantage is that it can be confusing, not knowing which bit controls what.
+
  * 6. Next, compare the operation of 'if' and 'while' structures to simulate
  *    momentary buttons. Replace the code you added in 5, above, with this code:
 
@@ -172,7 +166,7 @@ int main(void)
  *    work as expected? Explain the difference in operation between the 'if' and
  *    'while' structures making up the momentary button code.
  * 
- LED4 doesn't turn on while SW4 is being held. When SW4 is still on, it keeps the while statement true so it keeps looping, but for the if statement, SW3 only checked once, then turned on or off
+ LED4 doesn't turn on while SW4 is being held. When SW4 is still on, it keeps the while statement true so it keeps looping, but for the if statement, LED4 cant be turned on while the program is in the while loop.
 
  * 7. Let's explore logical conditions using 'if' statements. Replace the code
  *    added in 6, above, with this nested if code to make a logical AND
@@ -197,6 +191,8 @@ int main(void)
 
  *    Test the code to ensure it works as expected. Does the order of the if
  *    conditions matter? (eg. swap the conditional checks for SW3 and SW4)
+
+It works as expected and the order doesn't matter.
  * 
  * 8. Next, replace the code from 7 with the following code which implements a
  *    logical AND conditional operator composed of two ampersands '&&':
@@ -214,6 +210,8 @@ int main(void)
  *    Does '&&' work the same way as the nested if structures? Can you think of
  *    at least one advantage of using a logical conditional operator instead of
  *    nested if structures?
+
+ Yes it works the same. An advantage of using a logical operator is that you can do the same task with less code. It's not as complicated.
  * 
  * 9. Replace the double ampersand '&&' with double vertical bars '||)' to make
  *    a logical OR conditional operator. Your code should look like this:
@@ -230,15 +228,20 @@ int main(void)
 
  *    Describe the conditions under which LED4 turns on.
  * 
+ LED4 turns on if either SW3 is pressed or if SW4 is pressed. Both buttons do the same thing.
  * 
  * Programming Activities
  * 
  * 1. The statement '__delay_ms(100);' creates a 100ms delay. Try changing one
  *    or more of the delay values in the program to 500ms and see what happens.
+
+ it works
  * 
  *    Can the delay be made even longer? Try 1000 ms. How big can the delay be
  *    before MPLAB-X produces an error message? (Hint: can you think of a fast
  *    and efficient way of guessing an unknown number?)
+
+ I think 4205 ms is the biggest delay you can have before an error.
  * 
  * 2. The '__delay_ms();' function only accepts integers as delay values. To
  *    make delays shorter than 1ms, specify a delay in microseconds using the
@@ -258,6 +261,8 @@ int main(void)
  *    Try changing the delay values in both of the __delay_us(); functions.
  *    Does the pitch of the tone increase or decrease if the delay value is
  *    made smaller?
+
+ The smaller the delay, the higher the pitch.
  * 
  * 3. This code demonstrates a more compact way of toggling the beeper output
  *    using a logical NOT operator '!'. Replace the code above, with this code:
