@@ -142,14 +142,14 @@ int main(void)
           __delay_us(127);
       } */
  
-      if(SW3 == 0)
+      if(SW3 == 0 && SW4 == 1)
       {
-          LED4 = 1
+          LED4 = 1;
       }
  
       if(SW4 == 0)
       {
-          LED4 = 0
+          LED4 = 0;
       }
     
       // Activate bootloader if SW1 is pressed.
