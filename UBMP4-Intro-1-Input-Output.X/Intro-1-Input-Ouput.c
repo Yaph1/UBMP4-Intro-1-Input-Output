@@ -45,7 +45,7 @@ int main(void)
    {
       // Add code for your Program Analysis and Programming Activities here:
  
-     /* if (SW5 == 0)
+      if (SW5 == 0)
       {
           LED4 = 1;
           LED5 = 1;
@@ -108,7 +108,7 @@ int main(void)
           LED5 = 1;
           __delay_ms(1000);
           LED5 = 0;
-      } */
+      } 
         /*  if(SW5 == 0)
           {
             BEEPER = 1;
@@ -142,7 +142,7 @@ int main(void)
           __delay_us(127);
       } */
  
-      if(SW3 == 0 && SW4 == 1)
+     /* if(SW3 == 0 && SW4 == 1)
       {
           LED4 = 1;
       }
@@ -150,7 +150,19 @@ int main(void)
       if(SW4 == 0)
       {
           LED4 = 0;
-      }
+      } */
+      
+     /* if(SW1 == 0)
+      {
+        LED1 = 0;
+        __delay_ms(500);
+        LED1 = 1;
+        __delay_ms(500);
+        LED1 = 0;
+        __delay_ms(500);
+        LED1 = 1;
+      } */
+          
     
       // Activate bootloader if SW1 is pressed.
       if(SW1 == 0)
